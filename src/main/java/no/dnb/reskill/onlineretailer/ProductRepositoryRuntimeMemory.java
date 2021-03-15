@@ -1,10 +1,14 @@
 package no.dnb.reskill.onlineretailer;
 
 
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 public class ProductRepositoryRuntimeMemory implements ProductRepository {
     private Map<Integer, Product> productMap = new HashMap<>();
 
@@ -12,24 +16,42 @@ public class ProductRepositoryRuntimeMemory implements ProductRepository {
     public void addProduct(Product product) {
         if (productMap.containsKey(product.getId())) {
             productMap.replace(product.getId(), product);
+            System.out.println("Repository: Product added to collection (updated)");
         }
         else {
             productMap.put(product.getId(), product);
+            System.out.println("Repository: Product added to collection");
         }
     }
 
     @Override
     public boolean deleteProduct(int productId) {
-        return productMap.remove(productId) != null;
+        if (productMap.remove(productId) != null) {
+            System.out.println("Repository: Product deleted");
+            return true;
+        }
+        else {
+            System.out.println("Repository: Product not found in collection");
+            return false;
+        }
     }
 
     @Override
     public boolean updateProduct(Product product) {
-        return productMap.replace(product.getId(), product) != null;
+        if (productMap.replace(product.getId(), product) != null) {
+            System.out.println("Repository: Product updated");
+            return true;
+        }
+        else {
+            System.out.println("Repository: Product not found in collection");
+            return false;
+        }
     }
 
     @Override
     public Collection<Product> findAllProducts() {
         return productMap.values();
     }
+
+
 }

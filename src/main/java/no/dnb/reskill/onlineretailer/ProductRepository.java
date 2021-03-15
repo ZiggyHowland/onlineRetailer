@@ -9,4 +9,5 @@ public interface ProductRepository {
     boolean deleteProduct(int productId);
     boolean updateProduct(Product product);
     Collection<Product> findAllProducts();
+//    Product findProductByName(String productName);
 }

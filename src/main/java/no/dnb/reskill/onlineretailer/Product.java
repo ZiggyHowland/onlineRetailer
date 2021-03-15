@@ -34,7 +34,7 @@ public class Product {
     }
 
     public String toString() {
-        return String.format("Product[id=%d, name='%s' price=%.2f", id, name, price);
+        return String.format("Product[id=%d, name='%s' price=%.2f]", id, name, price);
     }
 }
 
