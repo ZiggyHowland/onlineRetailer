@@ -2,7 +2,7 @@ package no.dnb.reskill.onlineretailer;
 
 public class Product {
     private static int nextId = 0;
-    private int id;
+    private final int id;
     private String name;
     private double price;
 
@@ -19,18 +19,6 @@ public class Product {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String toString() {

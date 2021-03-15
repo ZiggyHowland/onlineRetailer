@@ -14,7 +14,7 @@ public class Application {
 
         ProductService service = app.getBean(ProductService.class);
 
-        // Inital stock
+        // Initial stock
         service.addToStock("Sunglasses", 199.99);
         service.addToStock("Hat", 29.49);
         service.addToStock("Shorts", 39.99);

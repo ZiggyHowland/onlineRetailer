@@ -3,12 +3,12 @@ package no.dnb.reskill.onlineretailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.NoSuchElementException;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
@@ -53,6 +53,6 @@ public class ProductServiceImpl implements ProductService {
                 return p;
             }
         }
-        throw new RuntimeException("Product name not found in stock");
+        throw new NoSuchElementException("Product name not found in stock");
     }
 }
