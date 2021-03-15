@@ -8,7 +8,7 @@ public class Product {
 
 
     public Product(String name, double price) {
-        this.id = nextId++;
+        this.id = ++nextId;
         this.name = name;
         this.price = price;
     }
