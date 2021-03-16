@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.NoSuchElementException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
@@ -17,9 +20,9 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public void addToStock(String name, double price ) {
-        productRepository.addProduct(new Product(name, price));
+    public int addToStock(Product product) {
         System.out.println("Service: Product added");
+        return productRepository.addProduct(product);
     }
 
     @Override
@@ -46,13 +49,12 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAllProducts();
     }
 
+
     @Override
-    public Product findProductByName(String productName) {
-        for (Product p : productRepository.findAllProducts()) {
-            if (p.getName().equalsIgnoreCase(productName)) {
-                return p;
-            }
-        }
-        throw new NoSuchElementException("Product name not found in stock");
+    public List<Product> findProductByName(String productName) {
+        Stream<Product> stream = productRepository.findAllProducts().stream();
+        return stream
+            .filter(p -> p.getName().equals(productName))
+            .collect(Collectors.toList());
     }
 }

@@ -1,12 +1,13 @@
 package no.dnb.reskill.onlineretailer;
 
 import java.util.Collection;
+import java.util.List;
 
 // Represent business logic
 public interface ProductService {
-    void addToStock(String name, double price);
+    int addToStock(Product product);
     void deleteFromStock(int productId);
     void updateStock(Product product);
     Collection<Product> findAllInStock();
-    Product findProductByName(String productName);
+    List<Product> findProductByName(String productName);
 }

@@ -12,15 +12,10 @@ public class ProductRepositoryRuntimeMemory implements ProductRepository {
     private Map<Integer, Product> productMap = new HashMap<>();
 
     @Override
-    public void addProduct(Product product) {
-        if (productMap.containsKey(product.getId())) {
-            productMap.replace(product.getId(), product);
-            System.out.println("Repository: Product added to collection (updated)");
-        }
-        else {
-            productMap.put(product.getId(), product);
-            System.out.println("Repository: Product added to collection");
-        }
+    public int addProduct(Product product) {
+        productMap.put(product.getId(), product);
+        System.out.println("Repository: Product added to collection");
+        return product.getId();
     }
 
     @Override
