@@ -1,5 +1,6 @@
 package no.dnb.reskill.onlineretailer.bizlayer;
 
+import no.dnb.reskill.onlineretailer.VatSetup;
 import no.dnb.reskill.onlineretailer.models.Product;
 import no.dnb.reskill.onlineretailer.datalayer.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ import java.util.stream.Stream;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository; // If autowiring field, then Mocking upon test - will be possible (since private)
 
+    @Autowired
+    private VatSetup vatSetup;
 
     @Autowired
     public ProductServiceImpl(@Qualifier("productRepositoryRuntimeMemory") ProductRepository productRepository) {
@@ -63,6 +66,14 @@ public class ProductServiceImpl implements ProductService {
             return -1;
         }
     }
+
+
+    @Override
+    public double getVatByPrice(double price) {
+        return vatSetup.getVatPercentageByPrice(price);
+    }
+
+
 
 
     @Override

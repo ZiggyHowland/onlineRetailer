@@ -12,6 +12,7 @@ public interface ProductService {
     Collection<Product> getLowStockProducts(long threshold);
     double getAveragePrice();
     double adjustPriceByPercent(long id, double byPercent);
+    double getVatByPrice(double price);
 
 
 
