@@ -1,4 +1,4 @@
-package no.dnb.reskill.onlineretailer;
+package no.dnb.reskill.onlineretailer.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,13 +18,20 @@ public class Product {
     private long id;
     private String name;
     private double price;
+    private long inStock;
 
-    public Product(String name, double price) {
-        this(DUMMY_ID, name, price);
+    public Product(String name, double price, long inStock  ) {
+        this(DUMMY_ID, name, price, inStock);
+    }
+
+    public double adjustPriceByPercent(double percent) {
+        return this.price *= 1 + percent/100;
     }
 
     public String toString() {
-        return String.format("Product[id=%d, name='%s' price=%.2f]", id, name, price);
+        return String.format(
+                "Product[id=%d, name='%s' price=%.2f inStock=%d]",
+                id, name, price, inStock);
     }
 }
 

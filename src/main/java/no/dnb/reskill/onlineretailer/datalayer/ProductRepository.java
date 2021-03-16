@@ -1,8 +1,9 @@
-package no.dnb.reskill.onlineretailer;
+package no.dnb.reskill.onlineretailer.datalayer;
 
+
+import no.dnb.reskill.onlineretailer.models.Product;
 
 import java.util.Collection;
-import java.util.List;
 
 // Represent logic to save (DB or memory)
 // CRUD: Create, Read, Update, Delete

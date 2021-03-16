@@ -1,5 +1,7 @@
 package no.dnb.reskill.onlineretailer;
 
+import no.dnb.reskill.onlineretailer.bizlayer.ProductService;
+import no.dnb.reskill.onlineretailer.models.Product;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -25,6 +27,10 @@ public class Application {
         service.findAllInStock()
                 .stream()
                 .forEach(p -> System.out.println(p));
+
+        System.out.println("\n-------------------\n");
+        System.out.println("Total value of inventory: " + service.calculateTotalValue());
+
 
     }
 
