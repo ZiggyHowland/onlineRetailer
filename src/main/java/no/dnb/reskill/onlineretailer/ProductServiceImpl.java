@@ -20,13 +20,13 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public int addToStock(Product product) {
+    public Product addToStock(Product product) {
         System.out.println("Service: Product added");
-        return productRepository.addProduct(product);
+        return productRepository.insertProduct(product);
     }
 
     @Override
-    public void deleteFromStock(int productId) {
+    public void deleteFromStock(long productId) {
         if (productRepository.deleteProduct(productId)) {
             System.out.println("Service: Product deleted");
         }
@@ -46,13 +46,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Collection<Product> findAllInStock() {
-        return productRepository.findAllProducts();
+        return productRepository.getAllProducts();
     }
 
 
     @Override
     public List<Product> findProductByName(String productName) {
-        Stream<Product> stream = productRepository.findAllProducts().stream();
+        Stream<Product> stream = productRepository.getAllProducts().stream();
         return stream
             .filter(p -> p.getName().equals(productName))
             .collect(Collectors.toList());

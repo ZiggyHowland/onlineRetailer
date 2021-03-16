@@ -14,24 +14,17 @@ public class Application {
         ApplicationContext app = SpringApplication.run(Application.class, args);
         System.out.println("After running spring application");
 
-        ProductService service = app.getBean(ProductService.class);
 
-        // Initial stock
-        service.addToStock(new Product("Sunglasses", 199.99));
-        service.addToStock(new Product("Hat", 29.49));
-        service.addToStock(new Product("Shorts", 39.99));
-        service.addToStock(new Product("Towel", 10.20));
-        service.addToStock(new Product("Sandals", 19.00));
-        service.addToStock(new Product("Sunscreen", 12.49));
+        ProductService service = app.getBean(ProductService.class);
 
         // Delete products matching given name
         Stream<Product> stream = service.findProductByName("Sandals").stream();
         stream.forEach(p -> service.deleteFromStock(p.getId()));
 
-
-        for (Product p : service.findAllInStock()) {
-            System.out.println(p.toString());
-        }
+        // List all the products
+        service.findAllInStock()
+                .stream()
+                .forEach(p -> System.out.println(p));
 
     }
 
