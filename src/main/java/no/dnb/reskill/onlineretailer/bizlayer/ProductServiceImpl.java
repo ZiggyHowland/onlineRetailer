@@ -1,6 +1,6 @@
 package no.dnb.reskill.onlineretailer.bizlayer;
 
-import no.dnb.reskill.onlineretailer.VatSetup;
+import no.dnb.reskill.onlineretailer.models.VatSetup;
 import no.dnb.reskill.onlineretailer.models.Product;
 import no.dnb.reskill.onlineretailer.datalayer.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +13,44 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-@Service("productService")
+@Service
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository; // If autowiring field, then Mocking upon test - will be possible (since private)
 
     @Autowired
     private VatSetup vatSetup;
 
+
     @Autowired // TODO I would like to read the qualifier value from the properties-file. Is that possible?
     public ProductServiceImpl(@Qualifier("productRepositoryDatabase") ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
+    public void doDemo() {
+        /*
+         Old code previously in Application, before implementing CrudRepository
+         */
+
+
+        // Delete products matching given name
+//        Stream<Product> stream = service.findProductByName("Sandals").stream();
+//        stream.forEach(p -> service.deleteFromStock(p.getId()));
+
+        // List all the products
+        findAllInStock()
+                .stream()
+                .forEach(p -> System.out.println(p));
+
+        System.out.println("\n-------------------\n");
+        System.out.println("Total value of inventory: " + calculateTotalValue());
+
+        System.out.println("\n-------------------\n");
+        findProductByName("Sunglasses")
+                .stream()
+                .forEach(p -> System.out.printf("%s cost %.2f, VAT is %.2f", p.getName(), p.getPrice(), getVatByPrice(p.getPrice())));
+
+
+    }
 
     @Override
     public double calculateTotalValue() {
@@ -114,4 +140,5 @@ public class ProductServiceImpl implements ProductService {
             .filter(p -> p.getName().equals(productName))
             .collect(Collectors.toList());
     }
+
 }

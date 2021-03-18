@@ -21,13 +21,16 @@ public class Product {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
     private String name;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name="productcategory")
+    private ProductCategory productCategory;
     private double price;
     @Column(name="instock")
     private long inStock;
 
 
-    public Product(String name, double price, long inStock  ) {
-        this(DUMMY_ID, name, price, inStock);
+    public Product(String name, ProductCategory productCategory, double price, long inStock  ) {
+        this(DUMMY_ID, name, productCategory, price, inStock);
     }
 
     public double adjustPriceByPercent(double percent) {
@@ -37,8 +40,8 @@ public class Product {
     @Override
     public String toString() {
         return String.format(
-                "Product[id=%d, name='%s' price=%.2f inStock=%d]",
-                id, name, price, inStock);
+                "Product[id=%d, name='%s' (%s) price=%.2f inStock=%d]",
+                id, name, productCategory, price, inStock);
     }
 
     // Important to help the entity manager merge objects with the same PK

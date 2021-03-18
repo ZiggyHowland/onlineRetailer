@@ -2,6 +2,7 @@ package no.dnb.reskill.onlineretailer.datalayer;
 
 
 import no.dnb.reskill.onlineretailer.models.Product;
+import no.dnb.reskill.onlineretailer.models.ProductCategory;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -15,12 +16,12 @@ public class ProductRepositoryRuntimeMemory implements ProductRepository {
 
 
     public ProductRepositoryRuntimeMemory() {
-        insertProduct(new Product("Sunglasses", 199.99, 100));
-        insertProduct(new Product("Hat", 29.49, 10));
-        insertProduct(new Product("Shorts", 39.99, 50));
-        insertProduct(new Product("Towel", 10.20, 30));
-        insertProduct(new Product("Sandals", 19.00, 15));
-        insertProduct(new Product("Sunscreen", 12.49, 125));
+        insertProduct(new Product("Sunglasses", ProductCategory.ACCESSORIES, 199.99, 100));
+        insertProduct(new Product("Hat", ProductCategory.CLOTHES, 29.49, 10));
+        insertProduct(new Product("Shorts", ProductCategory.CLOTHES, 39.99, 50));
+        insertProduct(new Product("Towel", ProductCategory.ACCESSORIES, 10.20, 30));
+        insertProduct(new Product("Sandals", ProductCategory.SHOES, 19.00, 15));
+        insertProduct(new Product("Sunscreen", ProductCategory.ACCESSORIES, 12.49, 125));
     }
 
 

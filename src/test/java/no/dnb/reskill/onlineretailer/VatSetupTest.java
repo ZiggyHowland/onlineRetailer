@@ -1,5 +1,7 @@
 package no.dnb.reskill.onlineretailer;
 
+import no.dnb.reskill.onlineretailer.models.VatPolicy;
+import no.dnb.reskill.onlineretailer.models.VatSetup;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

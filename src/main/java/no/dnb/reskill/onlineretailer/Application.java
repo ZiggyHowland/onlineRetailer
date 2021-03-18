@@ -17,25 +17,8 @@ public class Application {
         System.out.println("After running spring application");
 
 
-        ProductService service = app.getBean(ProductService.class);
-
-        // Delete products matching given name
-        Stream<Product> stream = service.findProductByName("Sandals").stream();
-        stream.forEach(p -> service.deleteFromStock(p.getId()));
-
-        // List all the products
-        service.findAllInStock()
-                .stream()
-                .forEach(p -> System.out.println(p));
-
-        System.out.println("\n-------------------\n");
-        System.out.println("Total value of inventory: " + service.calculateTotalValue());
-
-        System.out.println("\n-------------------\n");
-        service.findProductByName("Sunglasses")
-                .stream()
-                .forEach(p -> System.out.printf("%s cost %.2f, VAT is %.2f", p.getName(), p.getPrice(), service.getVatByPrice(p.getPrice())));
-
+        ProductService service = app.getBean("productService", ProductService.class);
+        service.doDemo();
 
 
     }

@@ -13,7 +13,7 @@ public interface ProductService {
     double getAveragePrice();
     double adjustPriceByPercent(long id, double byPercent);
     double getVatByPrice(double price);
-
+    void doDemo();
 
 
 

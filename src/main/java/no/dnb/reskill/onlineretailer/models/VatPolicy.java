@@ -1,4 +1,4 @@
-package no.dnb.reskill.onlineretailer;
+package no.dnb.reskill.onlineretailer.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

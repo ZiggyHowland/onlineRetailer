@@ -1,5 +1,9 @@
 package no.dnb.reskill.onlineretailer;
 
+import no.dnb.reskill.onlineretailer.models.DatabaseSetup;
+import no.dnb.reskill.onlineretailer.models.VatPolicy;
+import no.dnb.reskill.onlineretailer.models.VatSetup;
+import org.hibernate.dialect.Database;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,4 +20,5 @@ public class ApplicationConfig {
         vs.addVatPolicy(new VatPolicy(100_001, VatPolicy.NO_UPPER_LIMIT, 50 ));
         return vs;
     }
+
 }
