@@ -5,7 +5,6 @@ import no.dnb.reskill.onlineretailer.models.Product;
 import no.dnb.reskill.onlineretailer.datalayer.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -22,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
     private VatSetup vatSetup;
 
     @Autowired // TODO I would like to read the qualifier value from the properties-file. Is that possible?
-    public ProductServiceImpl(@Qualifier("productRepositoryH2Database") ProductRepository productRepository) {
+    public ProductServiceImpl(@Qualifier("productRepositoryDatabase") ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 

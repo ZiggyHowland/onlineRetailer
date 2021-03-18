@@ -9,11 +9,14 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.Collection;
 
-@Repository
-public class ProductRepositoryH2Database implements ProductRepository {
 
+@Repository
+public class ProductRepositoryDatabase implements ProductRepository {
+
+    // This is the "EntityManager" equivalent of @Autowired
+    // It uses the EntityManagerFactory bean implicity to create an EntityManager for us
     @PersistenceContext
-    protected EntityManager entityManager;
+    private EntityManager entityManager;
 
 
     @Override
@@ -46,6 +49,7 @@ public class ProductRepositoryH2Database implements ProductRepository {
             p.setName(product.getName());
             p.setPrice(product.getPrice());
             p.setInStock(product.getInStock());
+            // EntityManager flushes (automatically saves any local changes (in the entity) back to the database)
             return true;
         }
         catch (RuntimeException e) {
