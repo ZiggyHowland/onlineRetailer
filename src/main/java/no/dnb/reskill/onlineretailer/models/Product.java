@@ -34,11 +34,30 @@ public class Product {
         return this.price *= 1 + percent/100;
     }
 
+    @Override
     public String toString() {
         return String.format(
                 "Product[id=%d, name='%s' price=%.2f inStock=%d]",
                 id, name, price, inStock);
     }
+
+    // Important to help the entity manager merge objects with the same PK
+    // Must have Object parameter since the original equals()-function has it
+    @Override
+    public boolean equals(Object other) {
+        boolean result = false;
+        if (other instanceof Product) {
+            Product o = (Product)other;
+            result = this.id == o.id;
+        }
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int)id;
+    }
 }
+
 
 
