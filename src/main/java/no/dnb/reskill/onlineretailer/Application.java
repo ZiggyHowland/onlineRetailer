@@ -17,7 +17,8 @@ public class Application {
         System.out.println("After running spring application");
 
 
-        ProductService service = app.getBean("productService", ProductService.class);
+        ProductService service = app.getBean("productServiceUsingJpa", ProductService.class);
+        //ProductService service = app.getBean("productServiceImpl", ProductService.class);
         service.doDemo();
 
 

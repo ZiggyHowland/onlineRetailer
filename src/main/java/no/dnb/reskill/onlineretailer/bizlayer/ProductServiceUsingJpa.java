@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Service("productService")
+@Service
 public class ProductServiceUsingJpa implements ProductService {
     private final ProductRepositorySpringData productRepository; // If autowiring field, then Mocking upon test - will be possible (since private)
 
